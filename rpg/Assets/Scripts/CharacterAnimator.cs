@@ -7,7 +7,7 @@ public class CharacterAnimator : MonoBehaviour
 {
     public AnimationClip replaceableAttackAnim;
     public AnimationClip[] defaultAttackAnimSet;
-    protected AnimationClip[] currenAttackAnimSet;
+    //protected AnimationClip[] currenAttackAnimSet;
 
     const float locomationAnimationSmoothTime = .1f;
 
@@ -25,6 +25,8 @@ public class CharacterAnimator : MonoBehaviour
 
         overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
         animator.runtimeAnimatorController = overrideController;
+
+        combat.OnAttack += OnAttack;
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class CharacterAnimator : MonoBehaviour
     protected virtual void OnAttack()
     {
         animator.SetTrigger("attack");
-        int attackIndex = Random.Range(0, currenAttackAnimSet.Length);
-        overrideController[replaceableAttackAnim.name] = currenAttackAnimSet[attackIndex];
+        int attackIndex = Random.Range(0, defaultAttackAnimSet.Length);
+        overrideController[replaceableAttackAnim.name] = defaultAttackAnimSet[attackIndex];
     }
 }

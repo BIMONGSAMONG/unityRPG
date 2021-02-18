@@ -9,14 +9,16 @@ public class PlayerAnimator : CharacterAnimator
 
     protected override void Start()
     {
-        //foreach (WeaponAnimations a in weaponAnimations)
-        //{
-        //    weaponAnimationsDict.Add(a.weapon, a.clips);
-        //}
+        weaponAnimationsDict = new Dictionary<Equipment, AnimationClip[]>();
+        foreach (WeaponAnimations a in weaponAnimations)
+        {
+            weaponAnimationsDict.Add(a.weapon, a.clips);
+        }
     }
 
     public struct WeaponAnimations
     {
+        public Equipment weapon;
         public AnimationClip[] clips;
     }
 }
