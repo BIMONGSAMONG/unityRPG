@@ -52,9 +52,10 @@ public class CharacterCombat : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         stats.TakeDamage(myStats.damage.GetValue());
-        if (stats.currentHealth <=0)
+        if (stats.currentHealth <= 0)
         {
             InCombat = false;
         }
-    }
+    }    
+
 }

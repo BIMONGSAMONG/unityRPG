@@ -5,16 +5,11 @@ using UnityEngine.AI;
 
 public class CharacterAnimator : MonoBehaviour
 {
-    public AnimationClip replaceableAttackAnim;
-    public AnimationClip[] defaultAttackAnimSet;
-    //protected AnimationClip[] currenAttackAnimSet;
-
     const float locomationAnimationSmoothTime = .1f;
 
     NavMeshAgent agent;
     protected Animator animator;
     protected CharacterCombat combat;
-    protected AnimatorOverrideController overrideController;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -22,9 +17,6 @@ public class CharacterAnimator : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         combat = GetComponent<CharacterCombat>();
-
-        overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animator.runtimeAnimatorController = overrideController;
 
         combat.OnAttack += OnAttack;
     }
@@ -41,7 +33,7 @@ public class CharacterAnimator : MonoBehaviour
     protected virtual void OnAttack()
     {
         animator.SetTrigger("attack");
-        int attackIndex = Random.Range(0, defaultAttackAnimSet.Length);
-        overrideController[replaceableAttackAnim.name] = defaultAttackAnimSet[attackIndex];
+        float comboIndex = Random.Range(0, 3);
+        animator.SetFloat("combo", comboIndex);
     }
 }
