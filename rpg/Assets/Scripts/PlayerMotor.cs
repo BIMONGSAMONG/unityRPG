@@ -6,11 +6,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMotor : MonoBehaviour
 {
+    public Transform movePoint;
 
     Transform target;
-    NavMeshAgent agent;
+    NavMeshAgent agent;  
 
-    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -23,10 +23,18 @@ public class PlayerMotor : MonoBehaviour
             agent.SetDestination(target.position);
             FaceTarget();
         }
+
+        if (agent.remainingDistance == 0.0f)
+        {
+            movePoint.gameObject.SetActive(false);
+        }
     }
 
     public void MoveToPoint (Vector3 point)
     {
+        movePoint.position = point;
+        movePoint.gameObject.SetActive(true);
+
         agent.SetDestination(point);
     }
 

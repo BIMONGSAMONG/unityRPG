@@ -36,4 +36,6 @@ public class CharacterAnimator : MonoBehaviour
         float comboIndex = Random.Range(0, 3);
         animator.SetFloat("combo", comboIndex);
     }
+
+ 
 }

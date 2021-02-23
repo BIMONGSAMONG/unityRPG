@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Camera cam;
     PlayerMotor motor;
    
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
             if(Physics.Raycast(ray, out hit, 100, movementMask))
             {
                 motor.MoveToPoint(hit.point);
-
                 RemovwFocus();
             }
         }
@@ -75,4 +75,5 @@ public class PlayerController : MonoBehaviour
         focus = null;
         motor.StopFollowingTarget();
     }
+
 }

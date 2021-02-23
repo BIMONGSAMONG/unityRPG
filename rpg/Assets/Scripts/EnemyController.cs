@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
+    public ParticleSystem hitEffect;
 
     Transform target;
     NavMeshAgent agent;
@@ -20,6 +21,12 @@ public class EnemyController : MonoBehaviour
         combat = GetComponent<CharacterCombat>();
 
         anim = GetComponentInChildren<Animation>();
+        hitEffect.Stop();
+    }
+
+    public void ShowHitEffect()
+    {
+        hitEffect.Play();
     }
 
     // Update is called once per frame
