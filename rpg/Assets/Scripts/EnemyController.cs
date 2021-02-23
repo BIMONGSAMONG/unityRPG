@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
         combat = GetComponent<CharacterCombat>();
 
         anim = GetComponentInChildren<Animation>();
+
         hitEffect.Stop();
     }
 

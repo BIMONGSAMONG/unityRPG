@@ -7,7 +7,7 @@ public class EffectController : MonoBehaviour
     Interactable focus;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         focus = GetComponentInParent<PlayerController>().focus;   
     }

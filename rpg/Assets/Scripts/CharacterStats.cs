@@ -10,6 +10,9 @@ public class CharacterStats : MonoBehaviour
 
     public event System.Action<int, int> OnHealthChanged;
 
+    public GameObject damageText;
+    public Transform textPos;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -26,6 +29,11 @@ public class CharacterStats : MonoBehaviour
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         currentHealth -= damage;
+
+        GameObject text = Instantiate(damageText);
+        text.transform.position = textPos.position;
+        text.GetComponent<DamageText>().damage = damage;
+
         Debug.Log(transform.name + " take " + damage + " damage.");
 
         if (OnHealthChanged != null)

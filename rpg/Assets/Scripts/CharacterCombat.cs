@@ -56,6 +56,7 @@ public class CharacterCombat : MonoBehaviour
         {
             InCombat = false;
         }
-    }    
+    }
 
+    
 }
