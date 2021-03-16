@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.47985864, g: 0.5240599, b: 0.5936572, a: 1}
+  m_IndirectSpecularColor: {r: 0.47979134, g: 0.5240088, b: 0.5936238, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1205,7 +1205,7 @@ MonoBehaviour:
     baseValue: 5
   armor:
     baseValue: 3
-  damageText: {fileID: 5049474306215371513, guid: 87e8ca5a34a8d96438e58fd3439cade0,
+  damageText: {fileID: 867901285395034011, guid: ba85193a0495bbc40b5e2dbfed44fdd1,
     type: 3}
   textPos: {fileID: 1369982631}
 --- !u!114 &310622757
@@ -2429,7 +2429,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800000928}
-  m_LocalRotation: {x: 0.10690084, y: -0.0007804551, z: 0.00008391218, w: 0.99426943}
+  m_LocalRotation: {x: 0.10690084, y: -0.00078041985, z: 0.00008390838, w: 0.99426943}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2787,7 +2787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.10690086, y: -0.0007804751, z: 0.00008391433, w: 0.9942694}
+  m_LocalRotation: {x: 0.10690086, y: -0.0007804, z: 0.000083906256, w: 0.9942694}
   m_LocalPosition: {x: -0.6050892, y: 2.55, z: -7.649993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4789,7 +4789,7 @@ MonoBehaviour:
     baseValue: 5
   armor:
     baseValue: 0
-  damageText: {fileID: 5049474306215371513, guid: 87e8ca5a34a8d96438e58fd3439cade0,
+  damageText: {fileID: 867901285395034011, guid: ba85193a0495bbc40b5e2dbfed44fdd1,
     type: 3}
   textPos: {fileID: 1394652182}
 --- !u!114 &1408236646

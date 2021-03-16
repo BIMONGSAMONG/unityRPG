@@ -13,14 +13,18 @@ public class CharacterStats : MonoBehaviour
     public GameObject damageText;
     public Transform textPos;
 
+    Transform cam;
+    Quaternion rotation;
+
     void Awake()
     {
         currentHealth = maxHealth;
+        cam = Camera.main.transform;
     }
 
     void Update()
     {
-
+        
     }
 
     public void TakeDamage (int damage)
@@ -32,6 +36,11 @@ public class CharacterStats : MonoBehaviour
 
         GameObject text = Instantiate(damageText);
         text.transform.position = textPos.position;
+
+        Vector3 relativePos = textPos.position - cam.position;
+        rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        text.transform.rotation = rotation;
+
         text.GetComponent<DamageText>().damage = damage;
 
         Debug.Log(transform.name + " take " + damage + " damage.");

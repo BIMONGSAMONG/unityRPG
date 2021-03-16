@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - damageText: {fileID: 5049474306215371513, guid: 87e8ca5a34a8d96438e58fd3439cade0,
+  - damageText: {fileID: 867901285395034011, guid: ba85193a0495bbc40b5e2dbfed44fdd1,
       type: 3}
   - textPos: {instanceID: 0}
   executionOrder: 0
