@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public GameObject[] enemy = new GameObject[2];
-
     public int xPos;
     public int zPos;
-    public int enemyCount;
 
-    void Start()
+    void Update()
     {
         StartCoroutine(MushroomEnemyDrop());
     }
@@ -19,15 +16,15 @@ public class GenerateEnemies : MonoBehaviour
 
     IEnumerator MushroomEnemyDrop()
     {
-        while (enemyCount < 5)
+        while (true)
         {
             xPos = UnityEngine.Random.Range(5, 15);
             zPos = UnityEngine.Random.Range(11, 20);
 
-            Instantiate(enemy[0], new Vector3(xPos, 0, zPos), Quaternion.identity);
+            GameObject enemy = ObjectPoolingManager.instance.GetQueue();
+            enemy.transform.position = new Vector3(xPos, 0, zPos);
 
-            yield return new WaitForSeconds(0.1f);
-            enemyCount++;
+            yield return new WaitForSeconds(1f);
         }
     }
 }

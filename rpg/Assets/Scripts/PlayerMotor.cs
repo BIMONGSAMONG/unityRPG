@@ -22,6 +22,7 @@ public class PlayerMotor : MonoBehaviour
         {
             agent.SetDestination(target.position);
             FaceTarget();
+            movePoint.gameObject.SetActive(false);
         }
 
         if (agent.remainingDistance == 0.0f)

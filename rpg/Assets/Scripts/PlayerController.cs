@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Interactable focus;
     public LayerMask movementMask;
+    public Transform focusPoint;
 
     Camera cam;
     PlayerMotor motor;
@@ -46,9 +47,19 @@ public class PlayerController : MonoBehaviour
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    SetFocus(interactable);
+                    SetFocus(interactable);  
                 }
             }
+        }
+
+        if (focus != null)
+        {
+            focusPoint.position = focus.GetComponent<Transform>().position;
+        }
+
+        if (!focus.isActiveAndEnabled)
+        {
+            focusPoint.gameObject.SetActive(false);
         }
     }
 
@@ -57,7 +68,9 @@ public class PlayerController : MonoBehaviour
         if (newFocus != focus)
         {
             if (focus != null)
+            {
                 focus.OnDefocused();
+            }
 
             focus = newFocus;
             motor.FolllowTarget(newFocus);
@@ -66,6 +79,8 @@ public class PlayerController : MonoBehaviour
         focus = newFocus;
         newFocus.OnFocused(transform);
         motor.FolllowTarget(newFocus);
+
+        focusPoint.gameObject.SetActive(true);
     }
 
     void RemovwFocus()
@@ -74,5 +89,7 @@ public class PlayerController : MonoBehaviour
             focus.OnDefocused();
         focus = null;
         motor.StopFollowingTarget();
+
+        
     }
 }

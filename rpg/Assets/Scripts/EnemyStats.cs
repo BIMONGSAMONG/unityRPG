@@ -8,6 +8,6 @@ public class EnemyStats : CharacterStats
     {
         base.Die();
 
-        Destroy(gameObject);
+        ObjectPoolingManager.instance.InsertQueue(gameObject);
     }
 }

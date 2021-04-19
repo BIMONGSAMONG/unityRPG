@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius = 10f;
+    public float lookRadius = 5f;
     public ParticleSystem hitEffect;
 
     Transform target;
     NavMeshAgent agent;
     CharacterCombat combat;
     Animation anim;
+    Transform startPos;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class EnemyController : MonoBehaviour
         combat = GetComponent<CharacterCombat>();
 
         anim = GetComponentInChildren<Animation>();
+
+        startPos = GetComponent<Transform>();
 
         hitEffect.Stop();
     }
@@ -52,6 +55,11 @@ public class EnemyController : MonoBehaviour
                 FaceTarget();
             }
         }
+        else
+        {      
+            anim.CrossFade("idle");
+        }
+ 
     }
 
     void FaceTarget()
@@ -60,6 +68,7 @@ public class EnemyController : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
+
 
     void OnDrawGizmosSelected()
     {
