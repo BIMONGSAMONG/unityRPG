@@ -16,15 +16,15 @@ public class GenerateEnemies : MonoBehaviour
 
     IEnumerator MushroomEnemyDrop()
     {
-        while (true)
+        while (ObjectPoolingManager.instance.m_queue.Count != 0)
         {
             xPos = UnityEngine.Random.Range(5, 15);
             zPos = UnityEngine.Random.Range(11, 20);
 
             GameObject enemy = ObjectPoolingManager.instance.GetQueue();
             enemy.transform.position = new Vector3(xPos, 0, zPos);
-
-            yield return new WaitForSeconds(1f);
         }
+
+        yield return new WaitForSeconds(5f);
     }
 }

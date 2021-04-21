@@ -6,7 +6,7 @@ public class ObjectPoolingManager : MonoBehaviour
 {
     public static ObjectPoolingManager instance;
 
-    public GameObject[] m_prefab = new GameObject[2];
+    public GameObject m_prefab = null;
 
     public Queue<GameObject> m_queue = new Queue<GameObject>();
 
@@ -15,9 +15,9 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         instance = this;
 
-        for (int i = 0; i <5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            GameObject t_object = Instantiate(m_prefab[0], Vector3.zero, Quaternion.identity);
+            GameObject t_object = Instantiate(m_prefab, Vector3.zero, Quaternion.identity);
             m_queue.Enqueue(t_object);
             t_object.SetActive(false);
         }

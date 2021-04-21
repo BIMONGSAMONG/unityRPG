@@ -46,7 +46,7 @@ public class HealthUI : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                Destroy(ui.gameObject);
+                ui.gameObject.SetActive(false);
             }
         }
         

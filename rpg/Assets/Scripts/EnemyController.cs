@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {      
-            anim.CrossFade("idle");
+            anim.CrossFade("Idle");
         }
  
     }
