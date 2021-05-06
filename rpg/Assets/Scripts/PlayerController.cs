@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
 
     Camera cam;
     PlayerMotor motor;
-   
-   
+    GameObject interactableObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (focus != null)
+        {
+            focusPoint.position = focus.GetComponent<Transform>().position;
+            
+            if (interactableObject.activeSelf == false)
+            {
+                interactableObject = null;
+                focus = null;
+                focusPoint.gameObject.SetActive(false); 
+            }
+        }
+
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         
@@ -33,8 +45,7 @@ public class PlayerController : MonoBehaviour
             if(Physics.Raycast(ray, out hit, 100, movementMask))
             {
                 motor.MoveToPoint(hit.point);
-                RemovwFocus();
-                focusPoint.gameObject.SetActive(false);
+                RemovwFocus(); 
             }
         }
 
@@ -46,17 +57,13 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100))
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
+                interactableObject = hit.collider.gameObject;
                 if (interactable != null)
                 {
                     SetFocus(interactable);
                     focusPoint.gameObject.SetActive(true);
                 }
             }
-        }
-
-        if (focus != null)
-        {
-            focusPoint.position = focus.GetComponent<Transform>().position;
         }
 
     }

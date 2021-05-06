@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class QuestGiver : MonoBehaviour
 {
     public Quest quest;
+    
+
 
     public GameObject questWindow;
     public Text titleText;
@@ -19,5 +21,12 @@ public class QuestGiver : MonoBehaviour
         titleText.text = quest.title;
         descriptionText.text = quest.description;
         goldText.text = quest.goldReward.ToString();
+    }
+
+    public void AcceptQuest()
+    {
+        questWindow.SetActive(false);
+        quest.isActive = true;
+        
     }
 }

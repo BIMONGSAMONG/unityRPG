@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public int xPos;
-    public int zPos;
+    int xPos;
+    int zPos;
 
     void Update()
     {
-        StartCoroutine(MushroomEnemyDrop());
+        if ((ObjectPoolingManager.instance.m_queue.Count == 5))
+        {
+            StartCoroutine(MushroomEnemyDrop());
+        }
     }
 
 
@@ -23,8 +26,8 @@ public class GenerateEnemies : MonoBehaviour
 
             GameObject enemy = ObjectPoolingManager.instance.GetQueue();
             enemy.transform.position = new Vector3(xPos, 0, zPos);
-        }
 
-        yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 }

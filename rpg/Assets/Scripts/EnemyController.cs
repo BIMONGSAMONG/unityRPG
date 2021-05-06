@@ -24,7 +24,10 @@ public class EnemyController : MonoBehaviour
         anim = GetComponentInChildren<Animation>();
 
         startPos = GetComponent<Transform>();
+    }
 
+    void OnEnable()
+    {
         hitEffect.Stop();
     }
 
