@@ -23,7 +23,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory"))
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            OnOff();
         }
     }
 
@@ -40,5 +40,10 @@ public class InventoryUI : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+    }
+
+    public void OnOff()
+    {
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 }
