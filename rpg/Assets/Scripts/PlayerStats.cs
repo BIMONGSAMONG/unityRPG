@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
+    public Quest quest;
+
     // Start is called before the first frame update
     void Start()
     {
