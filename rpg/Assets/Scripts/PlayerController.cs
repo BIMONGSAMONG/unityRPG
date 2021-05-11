@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask movementMask;
     public Transform focusPoint;
 
+    GameObject focusObject;
     Camera cam;
     PlayerMotor motor;
 
@@ -23,7 +24,12 @@ public class PlayerController : MonoBehaviour
     {
         if (focus != null)
         {
-            focusPoint.position = focus.GetComponent<Transform>().position;          
+            focusPoint.position = focus.GetComponent<Transform>().position;   
+            
+            if (focusObject.activeSelf == false)
+            {
+                focus = null;
+            }
         }
         else
         {
@@ -53,6 +59,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100))
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
+                focusObject = hit.collider.gameObject;
                 if (interactable != null)
                 {
                     SetFocus(interactable);

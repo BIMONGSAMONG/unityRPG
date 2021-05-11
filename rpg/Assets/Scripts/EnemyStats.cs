@@ -15,21 +15,40 @@ public class EnemyStats : CharacterStats
     {
         base.Die();
 
-        ObjectPoolingManager.instance.InsertQueue(gameObject);
+        StartCoroutine(Drop());
+
+        ObjectPoolingManager.instance.InsertMQueue(gameObject);
         currentHealth = maxHealth;
-
-        player.GetComponent<PlayerController>().focus = null;
-
+        
         if (player.GetComponent<PlayerStats>().quest.isActive)
-        {      
-            if (player.GetComponent<PlayerStats>().quest.goal.IsReached())
-            {
-
-            }
-            else
-            {
-                player.GetComponent<PlayerStats>().quest.goal.EnmeyKilled();
-            }
+        {
+            QuestActive();
         }
+
+    }
+
+    void QuestActive()
+    {
+        if (player.GetComponent<PlayerStats>().quest.goal.IsReached())
+         {
+
+         }
+         else
+         {
+             player.GetComponent<PlayerStats>().quest.goal.EnmeyKilled();
+         }
+    }
+
+    IEnumerator Drop()
+    {
+        int dropCount = Random.Range(1, 5);
+
+        for (int i = 0; i < dropCount; i++)
+        {
+            GameObject coin = ObjectPoolingManager.instance.GetCQueue();
+            coin.transform.position = gameObject.transform.position;
+        }
+
+        yield return new WaitForSeconds(0.3f);
     }
 }

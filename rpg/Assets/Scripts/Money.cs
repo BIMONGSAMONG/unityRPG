@@ -9,7 +9,7 @@ public class Money : MonoBehaviour
 
     public Text moneyCount;
 
-    int money = 0;
+    public int money = 0;
 
     private void Start()
     {

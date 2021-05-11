@@ -24,7 +24,7 @@ public class GenerateEnemies : MonoBehaviour
             xPos = UnityEngine.Random.Range(5, 15);
             zPos = UnityEngine.Random.Range(11, 20);
 
-            GameObject enemy = ObjectPoolingManager.instance.GetQueue();
+            GameObject enemy = ObjectPoolingManager.instance.GetMQueue();
             enemy.transform.position = new Vector3(xPos, 0, zPos);
 
             yield return new WaitForSeconds(5.0f);
