@@ -14,6 +14,52 @@ public class QuestGiver : MonoBehaviour
     public Text descriptionText;
     public Text goldText;
 
+    public GameObject qIcon;
+    public GameObject wIcon;
+
+    Transform cam;
+    Quaternion rotation;
+
+    private void Start()
+    {
+        cam = Camera.main.transform;
+    }
+
+    private void Update()
+    {
+        if (quest.isActive == false)
+        {
+            Vector3 relativePos = wIcon.transform.position - cam.position;
+            rotation = Quaternion.LookRotation(-relativePos, Vector3.up);
+            wIcon.transform.rotation = rotation;
+
+            wIcon.SetActive(true);
+        }
+        else
+        {
+            if (wIcon.activeSelf)
+            {
+                wIcon.SetActive(false);
+            }
+
+            if (quest.goal.currentAmount < quest.goal.requiredAmount)
+            {
+                qIcon.GetComponentInChildren<MeshRenderer>().material.color = Color.gray;
+            }
+            else
+            {
+                qIcon.GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+            }
+            
+
+            Vector3 relativePos = qIcon.transform.position - cam.position;
+            rotation = Quaternion.LookRotation(-relativePos, Vector3.up);
+            qIcon.transform.rotation = rotation;
+
+            qIcon.SetActive(true);
+        }
+    }
+
     public void OpenQuestWindow()
     {
         questWindow.SetActive(true);

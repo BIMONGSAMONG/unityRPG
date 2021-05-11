@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class NPC : Interactable
 {
+
     public override void Interact()
     {
         base.Interact();
 
-        Quest();
+        if(gameObject.GetComponent<QuestGiver>().quest.isActive)
+        {
+
+        }
+        else
+        {
+            Quest();
+        }
+        
     }
 
     void Quest()
