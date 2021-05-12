@@ -7,7 +7,6 @@ public class PlayerStats : CharacterStats
 {
     public Quest quest;
 
-    // Start is called before the first frame update
     void Start()
     {
         EquipmentManager.instance.onEquipmentChaged += OnEquipmenetChanged;
@@ -32,6 +31,5 @@ public class PlayerStats : CharacterStats
     {
         base.Die();
         PlayerManager.instance.KillPlayer();
-        
     }
 }

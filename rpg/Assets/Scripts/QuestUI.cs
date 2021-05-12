@@ -22,18 +22,32 @@ public class QuestUI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Quest"))
         {
             OnOff();
-        }
+        }     
 
-        if ((gameObject.activeSelf)
-            &&(player.GetComponent<PlayerStats>().quest.isActive))
+        if (questUI.activeSelf)
         {
-            OnQuest();
+            if ((player.GetComponent<PlayerStats>().quest.isActive))
+            {
+                OnQuest();
+            }
+            else if (!(player.GetComponent<PlayerStats>().quest.isActive))
+            {
+                OffQuest();
+            }
+        }
+        else
+        {
+            if (questStory.activeSelf)
+            {
+                questStory.SetActive(false);
+            }
         }
     }
 
@@ -53,5 +67,13 @@ public class QuestUI : MonoBehaviour
         story.text = player.GetComponent<PlayerStats>().quest.description;
         cAmount.text = player.GetComponent<PlayerStats>().quest.goal.currentAmount.ToString();
         rAmount.text = player.GetComponent<PlayerStats>().quest.goal.requiredAmount.ToString();
+    }
+
+    void OffQuest()
+    {
+        if (questTitle.activeSelf)
+        {
+            questTitle.SetActive(false);
+        }
     }
 }

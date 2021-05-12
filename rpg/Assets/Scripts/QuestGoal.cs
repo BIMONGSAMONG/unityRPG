@@ -31,4 +31,5 @@ public class QuestGoal
         if (goalType == GoalType.Gathering)
             currentAmount++;
     }
+
 }

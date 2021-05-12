@@ -17,6 +17,9 @@ public class QuestGiver : MonoBehaviour
     public GameObject qIcon;
     public GameObject wIcon;
 
+    public GameObject questClearWindow;
+    public Text rewardText;
+
     Transform cam;
     Quaternion rotation;
 
@@ -42,7 +45,7 @@ public class QuestGiver : MonoBehaviour
                 wIcon.SetActive(false);
             }
 
-            if (quest.goal.currentAmount < quest.goal.requiredAmount)
+            if (!quest.goal.IsReached())
             {
                 qIcon.GetComponentInChildren<MeshRenderer>().material.color = Color.gray;
             }
@@ -74,5 +77,21 @@ public class QuestGiver : MonoBehaviour
         questWindow.SetActive(false);
         quest.isActive = true;
         player.quest = quest;
+    }
+
+    public void OpenClearQuest()
+    {
+        questClearWindow.SetActive(true);
+        rewardText.text = quest.goldReward.ToString();
+    }
+
+    public void ClearQuest()
+    {
+        questClearWindow.SetActive(false);
+        Money.instance.money += quest.goldReward;
+        quest.Complete();
+        qIcon.SetActive(false);
+
+        Destroy(gameObject.GetComponent<QuestGiver>());
     }
 }

@@ -9,20 +9,31 @@ public class NPC : Interactable
     {
         base.Interact();
 
-        if(gameObject.GetComponent<QuestGiver>().quest.isActive)
+        if (gameObject.GetComponent<QuestGiver>() != null)
         {
+            if (!gameObject.GetComponent<QuestGiver>().quest.isActive)
+            {
+                Quest();
+            }
+            else if ((gameObject.GetComponent<QuestGiver>().quest.isActive)
+                && (gameObject.GetComponent<QuestGiver>().quest.goal.IsReached()))
+            {
+                Clear();
+            }
+            else
+            {
 
-        }
-        else
-        {
-            Quest();
-        }
-        
+            }
+        }  
     }
 
     void Quest()
     {
-        QuestGiver questGiver = GetComponent<QuestGiver>();
-        questGiver.OpenQuestWindow();
+        gameObject.GetComponent<QuestGiver>().OpenQuestWindow();
+    }
+
+    void Clear()
+    {
+        gameObject.GetComponent<QuestGiver>().OpenClearQuest();
     }
 }
