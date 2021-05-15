@@ -7,6 +7,9 @@ TagManager:
   - MovePoint
   - FxTemporaire
   - Quest
+  - CM
+  - NPC
+  - UI
   layers:
   - Default
   - TransparentFX

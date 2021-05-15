@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
         if (EventSystem.current.IsPointerOverGameObject())
             return;
+
+        if (focusObject != GameObject.FindGameObjectWithTag("NPC"))
+        {
+
+        }
         
         if (Input.GetMouseButtonDown(0))
         {
