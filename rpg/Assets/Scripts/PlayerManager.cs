@@ -17,9 +17,24 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     public GameObject player;
+    public GameObject DieUI;
 
     public void KillPlayer()
     {
+        DieUI.SetActive(true);
+    }
+
+    public void Revival()
+    {
+        Money.instance.money -= Money.instance.money / 2;
+        player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
+        player.SetActive(true);
+        DieUI.SetActive(false);
+    }
+
+    public void Again()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DieUI.SetActive(false);
     }
 }

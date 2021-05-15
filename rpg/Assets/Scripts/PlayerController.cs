@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     GameObject focusObject;
     Camera cam;
     PlayerMotor motor;
+    PlayerStats stats;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         motor = GetComponent<PlayerMotor>();
+        stats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -39,40 +41,38 @@ public class PlayerController : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (focusObject != GameObject.FindGameObjectWithTag("NPC"))
+        if (stats.currentHealth > 0)
         {
-
-        }
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit, 100, movementMask))
+            if (Input.GetMouseButtonDown(0))
             {
-                motor.MoveToPoint(hit.point);
-                RemovwFocus(); 
-            }
-        }
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                focusObject = hit.collider.gameObject;
-                if (interactable != null)
+                if (Physics.Raycast(ray, out hit, 100, movementMask))
                 {
-                    SetFocus(interactable);
-                    focusPoint.gameObject.SetActive(true);
+                    motor.MoveToPoint(hit.point);
+                    RemovwFocus();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    focusObject = hit.collider.gameObject;
+                    if (interactable != null)
+                    {
+                        SetFocus(interactable);
+                        focusPoint.gameObject.SetActive(true);
+                    }
                 }
             }
         }
-
+ 
     }
 
     void SetFocus (Interactable newFocus)

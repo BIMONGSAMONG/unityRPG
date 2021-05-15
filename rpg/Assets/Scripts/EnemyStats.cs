@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
-    GameObject player;
+    PlayerStats playerStats;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
     }
 
     public override void Die()
@@ -20,7 +20,7 @@ public class EnemyStats : CharacterStats
         ObjectPoolingManager.instance.InsertMQueue(gameObject);
         currentHealth = maxHealth;
         
-        if (player.GetComponent<PlayerStats>().quest.isActive)
+        if (playerStats.quest.isActive)
         {
             QuestActive();
         }
@@ -29,13 +29,13 @@ public class EnemyStats : CharacterStats
 
     void QuestActive()
     {
-        if (player.GetComponent<PlayerStats>().quest.goal.IsReached())
+        if (playerStats.quest.goal.IsReached())
          {
 
          }
          else
          {
-             player.GetComponent<PlayerStats>().quest.goal.EnmeyKilled();
+            playerStats.quest.goal.EnmeyKilled();
          }
     }
 

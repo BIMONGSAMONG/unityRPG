@@ -37,5 +37,9 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetFloat("combo", comboIndex);
     }
 
+    public virtual void Die()
+    {
+        animator.SetTrigger("die");
+    }
  
 }

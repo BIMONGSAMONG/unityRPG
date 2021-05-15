@@ -31,5 +31,6 @@ public class PlayerStats : CharacterStats
     {
         base.Die();
         PlayerManager.instance.KillPlayer();
+        gameObject.SetActive(false);
     }
 }
