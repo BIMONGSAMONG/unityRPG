@@ -5,20 +5,38 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
+    #region Singleton
+
     public static Money instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory found!");
+            return;
+        }
+        instance = this;
+    }
+
+    #endregion
 
     public Text moneyCount;
 
     public int money = 0;
 
-    private void Start()
+    public delegate void MoneyChanged(int moneyAmount); 
+    public MoneyChanged moneyChanged;
+
+    void Start()
     {
-        instance = this;
+        moneyChanged += UIUpdate;
+        moneyChanged.Invoke(money);
     }
 
-    // Update is called once per frame
-    void Update()
+    void UIUpdate(int moneyAmount)
     {
+        money += moneyAmount;
         moneyCount.text = money.ToString();
     }
 }

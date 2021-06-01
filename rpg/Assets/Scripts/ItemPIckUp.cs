@@ -2,7 +2,7 @@
 
 public enum itemType
 {
-    Wear, Coin
+    Equipment, Coin
 }
 
 public class ItemPIckUp : Interactable
@@ -16,7 +16,7 @@ public class ItemPIckUp : Interactable
 
         switch(itemType)
         {
-            case itemType.Wear:
+            case itemType.Equipment:
                 ItemPickUp();
                 break;
             case itemType.Coin:
@@ -36,7 +36,7 @@ public class ItemPIckUp : Interactable
 
     void CoinPickUp()
     {
-        Money.instance.money += 10;
+        Money.instance.moneyChanged(10);
         ObjectPoolingManager.instance.InsertCQueue(gameObject);
     }
 }

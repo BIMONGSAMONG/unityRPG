@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius = 5f;
-    public ParticleSystem hitEffect;
+    public float lookRadius = 5f;  
 
     Transform target;
     NavMeshAgent agent;
@@ -25,16 +24,7 @@ public class EnemyController : MonoBehaviour
 
         startPos = GetComponent<Transform>();
     }
-
-    void OnEnable()
-    {
-        hitEffect.Stop();
-    }
-
-    public void ShowHitEffect()
-    {
-        hitEffect.Play();
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -74,9 +64,9 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }

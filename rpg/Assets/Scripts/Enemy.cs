@@ -11,7 +11,7 @@ public class Enemy : Interactable
     void Start()
     {
         playerManager = PlayerManager.instance;
-        myStats = GetComponent<CharacterStats>();
+        myStats = GetComponent<CharacterStats>();  
     }
 
     public override void Interact()
@@ -23,6 +23,5 @@ public class Enemy : Interactable
         {
             playerCombat.Attack(myStats);
         }
- 
     }
 }

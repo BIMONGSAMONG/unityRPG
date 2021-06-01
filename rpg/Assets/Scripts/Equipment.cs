@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet }
+
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]
 public class Equipment : Item
 {
@@ -18,5 +20,3 @@ public class Equipment : Item
         RemoveFromInventory();
     }
 }
-
-public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet }

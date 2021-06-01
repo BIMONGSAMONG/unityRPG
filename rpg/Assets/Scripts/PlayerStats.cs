@@ -27,6 +27,12 @@ public class PlayerStats : CharacterStats
         }
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        CinemachineShake.instance.ShakeCamera(5f, .1f);
+    }
+
     public override void Die()
     {
         base.Die();

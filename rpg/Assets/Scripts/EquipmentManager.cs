@@ -24,6 +24,7 @@ public class EquipmentManager : MonoBehaviour
     public OnEquipmentChaged onEquipmentChaged;
 
     Inventory inventory;
+    public StatsUI statsUI;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class EquipmentManager : MonoBehaviour
         if(onEquipmentChaged != null)
         {
             onEquipmentChaged.Invoke(newItem, oldItem);
+            statsUI.onStatsChangedCallback.Invoke();
         }
 
         currentEquitment[slotIndex] = newItem;
@@ -70,6 +72,7 @@ public class EquipmentManager : MonoBehaviour
             if (onEquipmentChaged != null)
             {
                 onEquipmentChaged.Invoke(null, oldItem);
+                statsUI.onStatsChangedCallback.Invoke();
             }
             return oldItem;
         }

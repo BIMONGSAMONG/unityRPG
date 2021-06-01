@@ -10,16 +10,15 @@ public class GenerateEnemies : MonoBehaviour
 
     void Update()
     {
-        if ((ObjectPoolingManager.instance.m_queue.Count == 5))
+        if ((ObjectPoolingManager.instance.monsterQueue.Count == 5))
         {
             StartCoroutine(MushroomEnemyDrop());
         }
     }
 
-
     IEnumerator MushroomEnemyDrop()
     {
-        while (ObjectPoolingManager.instance.m_queue.Count != 0)
+        while (ObjectPoolingManager.instance.monsterQueue.Count != 0)
         {
             xPos = UnityEngine.Random.Range(5, 15);
             zPos = UnityEngine.Random.Range(11, 20);

@@ -88,7 +88,7 @@ public class QuestGiver : MonoBehaviour
     public void ClearQuest()
     {
         questClearWindow.SetActive(false);
-        Money.instance.money += quest.goldReward;
+        Money.instance.moneyChanged(quest.goldReward);
         quest.Complete();
         qIcon.SetActive(false);
 

@@ -16,18 +16,17 @@ public class CharacterStats : MonoBehaviour
     Transform cam;
     Quaternion rotation;
 
-    void Awake()
+    private void Awake()
     {
-        currentHealth = maxHealth;
         cam = Camera.main.transform;
     }
 
-    void Update()
+    void OnEnable()
     {
-        
+        currentHealth = maxHealth; 
     }
 
-    public void TakeDamage (int damage)
+    public virtual void TakeDamage (int damage)
     {
         damage -= armor.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);

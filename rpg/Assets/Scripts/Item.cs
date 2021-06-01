@@ -5,7 +5,7 @@ public class Item : ScriptableObject
 {
     new public string name = "New Item"; // 아이템 이름
     public Sprite icon = null;           // 아이템 아이콘
-    public bool isDefautItem = false;    // 
+    public bool isDefautItem = false;    // 기본장착유무
 
     public virtual void Use()
     {

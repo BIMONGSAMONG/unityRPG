@@ -26,8 +26,8 @@ public class PlayerManager : MonoBehaviour
 
     public void Revival()
     {
-        Money.instance.money -= Money.instance.money / 2;
-        player.GetComponent<PlayerStats>().currentHealth = player.GetComponent<PlayerStats>().maxHealth;
+        int loseMoney = Money.instance.money / 2;
+        Money.instance.moneyChanged(-loseMoney);
         player.SetActive(true);
         DieUI.SetActive(false);
     }

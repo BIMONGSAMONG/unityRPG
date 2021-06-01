@@ -6,9 +6,20 @@ public class EnemyStats : CharacterStats
 {
     PlayerStats playerStats;
 
+    public ParticleSystem effect;
+
     private void Start()
     {
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+        effect.Stop();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        effect.Play();
     }
 
     public override void Die()
@@ -18,7 +29,6 @@ public class EnemyStats : CharacterStats
         StartCoroutine(Drop());
 
         ObjectPoolingManager.instance.InsertMQueue(gameObject);
-        currentHealth = maxHealth;
         
         if (playerStats.quest.isActive)
         {

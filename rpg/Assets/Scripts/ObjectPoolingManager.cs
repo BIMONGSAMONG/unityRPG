@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class ObjectPoolingManager : MonoBehaviour
 {
+    #region Singleton
+
     public static ObjectPoolingManager instance;
 
-    public GameObject m_prefab;
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory found!");
+            return;
+        }
+        instance = this;
+    }
+
+    #endregion
+
+    public GameObject monsterPrefab;
     public GameObject coinPrefab;
 
-    public Queue<GameObject> m_queue = new Queue<GameObject>();
+    public Queue<GameObject> monsterQueue = new Queue<GameObject>();
     public Queue<GameObject> coinQueue = new Queue<GameObject>();
 
     // Start is called before the first frame update
@@ -19,8 +33,8 @@ public class ObjectPoolingManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            GameObject monsterObject = Instantiate(m_prefab, Vector3.zero, Quaternion.identity);
-            m_queue.Enqueue(monsterObject);
+            GameObject monsterObject = Instantiate(monsterPrefab, Vector3.zero, Quaternion.identity);
+            monsterQueue.Enqueue(monsterObject);
             monsterObject.SetActive(false);
         }
 
@@ -35,13 +49,13 @@ public class ObjectPoolingManager : MonoBehaviour
 
     public void InsertMQueue(GameObject p_object)
     {
-        m_queue.Enqueue(p_object);
+        monsterQueue.Enqueue(p_object);
         p_object.SetActive(false);
     }
 
     public GameObject GetMQueue()
     {
-        GameObject t_object = m_queue.Dequeue();
+        GameObject t_object = monsterQueue.Dequeue();
         t_object.SetActive(true);
         return t_object;
     }

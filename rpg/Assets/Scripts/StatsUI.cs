@@ -22,6 +22,16 @@ public class StatsUI : MonoBehaviour
     int atkCost = 10;
     int defCost = 10;
 
+    public delegate void OnStatsChangedCallback();
+    public OnStatsChangedCallback onStatsChangedCallback;
+
+
+    private void Start()
+    {
+        onStatsChangedCallback += UpdateUI;
+        onStatsChangedCallback.Invoke();
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Stats"))
@@ -31,24 +41,26 @@ public class StatsUI : MonoBehaviour
 
         if (statsUI.activeSelf)
         {
-            maxHealth.text = playerStats.maxHealth.ToString();
-            atk.text = playerStats.damage.GetValue().ToString();
-            def.text = playerStats.armor.GetValue().ToString();
-
-            hCost.text = healthCost.ToString();
-            aCost.text = atkCost.ToString();
-            dCost.text = defCost.ToString();
-
             ButtonActive(hbutton, healthCost);
             ButtonActive(abutton, atkCost);
             ButtonActive(dbutton, defCost);
         }
-      
     }
 
     public void OnOff()
     {
         statsUI.SetActive(!statsUI.activeSelf);
+    }
+
+    void UpdateUI()
+    {
+        maxHealth.text = playerStats.maxHealth.ToString();
+        atk.text = playerStats.damage.GetValue().ToString();
+        def.text = playerStats.armor.GetValue().ToString();
+
+        hCost.text = healthCost.ToString();
+        aCost.text = atkCost.ToString();
+        dCost.text = defCost.ToString();
     }
 
     void ButtonActive(Button button, int cost)
@@ -70,17 +82,26 @@ public class StatsUI : MonoBehaviour
 
     public void HealthUp()
     {
-        Money.instance.money -= healthCost;
+        Money.instance.moneyChanged(-healthCost);
         playerStats.maxHealth += 10;
+
+        if(onStatsChangedCallback != null)
+            onStatsChangedCallback.Invoke();
     }
     public void AtkhUp()
     {
-        Money.instance.money -= atkCost;
+        Money.instance.moneyChanged(-atkCost);
         playerStats.damage.baseValue++;
+
+        if (onStatsChangedCallback != null)
+            onStatsChangedCallback.Invoke();
     }
     public void DefthUp()
     {
-        Money.instance.money -= defCost;
+        Money.instance.moneyChanged(-defCost);
         playerStats.damage.baseValue++;
+
+        if (onStatsChangedCallback != null)
+            onStatsChangedCallback.Invoke();
     }
 }
